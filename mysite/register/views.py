@@ -1,0 +1,26 @@
+from django.http import request
+from django.shortcuts import render,redirect
+from .forms import RegisterForm
+
+
+# Create your views here.
+def register(response):
+    if response.method == "POST":
+        form = RegisterForm(response.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("/home") 
+        
+    else:
+        form = RegisterForm()
+    return render(response,"register/register.html",{"form":form})
+
+def view(response):
+    return render(response,"main/view.html",{})
+
+# def logintest(response):
+#     username = "dawn"
+#     password = "1234"
+#     if request.method == "POST":
+#         if not 'username' in request.session
+#     return render(response,"registration/logintest.html",{"username":username})

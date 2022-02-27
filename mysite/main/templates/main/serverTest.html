@@ -1,0 +1,21 @@
+<!doctype html>
+
+<head>
+  <script>
+
+    const socket = new WebSocket('ws://10.10.10.59:25567');
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        socket.send('Hello Server!');
+    });
+
+    // Listen for messages
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data);
+    });
+
+</script>
+
+</head>
+<body></body>

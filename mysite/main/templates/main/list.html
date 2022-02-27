@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{% block title %}View List{% endblock %}
+
+{% block content %}
+    <h1>{{ name }}'s useInterface</h1>
+    <form method="POST" action ="#">
+        {% csrf_token %}    
+        <ul>
+            {% for item in ls  %}                
+                {% if item.complete == True %}
+                    <li><input type="checkbox" value="clicked" name="c{{item.id}}" checked="checked">{{item.text}}</li>
+                {% else %}
+                    <li><input type="checkbox" value="clicked" name="c{{item.id}}">{{item.text}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <button type="submit" name="save" value="save">Save</button>
+        <input type="text" name="new">
+        <input type="submit" name="newItem" value="Add Item">
+    </form>
+{% endblock %}
