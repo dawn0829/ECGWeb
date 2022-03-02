@@ -2,10 +2,14 @@
 
 {% block title %}
     Home
+    
 {% endblock  %}
 {%block content%}
+    <img src="/static/main/70bm.gif" width="350"/>
     <h1>Home Page</h1>
+    <a href="/serverTest">detect</a>
     <p>login<a href="/login">Here</a></p>
     <p>Don't have a account? Create one<a href="/register">Here</a></p>
+    <script>var mySocket = new WebSocket("ws://www.example.com/socketserver", "my-custom-protocol");</script>
 {% endblock %}
 

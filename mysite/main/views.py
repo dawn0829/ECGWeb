@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import ToDoList,Item
+from .models import ECGList,ECGdata
 from .forms import CreateNewList
 
 # Create your views here.
@@ -8,9 +8,9 @@ def home(response):
     return render(response,"main/home.html",{"name":"test"})
 
 def checkid(response, id = None):
-    name = ToDoList.objects.get(id=id)
+    name = ECGList.objects.get(id=id)
     #name1 = ToDoList.objects.get(id=id)
-    ls = Item.objects.filter(todolist_id=id)
+    ls = ECGdata.objects.filter(ecgdata_id=id)
     #print(ls)
     #{"save":["save"]}
     if response.method == "POST":
@@ -27,8 +27,8 @@ def checkid(response, id = None):
             if len(txt) > 2:
                 #print(type(name1))
                 #print(type(ls))
-                a = Item()
-                a.todolist = name
+                a = ECGdata()
+                a.ecglist = name
                 a.text = txt
                 a.complete = False
                 a.save()               
@@ -43,9 +43,9 @@ def create(response):
         form = CreateNewList(response.POST)
         if form.is_valid():
             n = form.cleaned_data["name"]
-            t = ToDoList(name=n)
+            t = ECGList(name=n)
             t.save()
-            response.user.todolist.add(t)
+            response.user.ecglist.add(t)
         return HttpResponseRedirect("/%i"%t.id)
     else:
         form = CreateNewList()       

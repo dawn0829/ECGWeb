@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ToDoList,Item
+from .models import ECGdata,ECGList
 # Register your models here.
-admin.site.register(ToDoList)
-admin.site.register(Item)
+admin.site.register(ECGList)
+admin.site.register(ECGdata)

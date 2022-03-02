@@ -4,7 +4,7 @@ View
 {% endblock %}
 
 {% block content %}
-    {% for td in user.todolist.all %}
+    {% for td in user.ecglist.all %}
         <p><a href="/{{td.id}}">{{td.name}}</a></p>
     {% endfor %}
 {% endblock %}
