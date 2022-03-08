@@ -18,9 +18,3 @@ def register(response):
 def view(response):
     return render(response,"main/view.html",{})
 
-# def logintest(response):
-#     username = "dawn"
-#     password = "1234"
-#     if request.method == "POST":
-#         if not 'username' in request.session
-#     return render(response,"registration/logintest.html",{"username":username})

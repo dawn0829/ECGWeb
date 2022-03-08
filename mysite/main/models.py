@@ -12,7 +12,7 @@ class ECGdata(models.Model):
     ECGlist = models.ForeignKey(ECGList, on_delete = models.CASCADE)
     volt = models.CharField(max_length=10)
     nomal = models.BooleanField()
-    time = models.DateField(auto_now=True)
+    time = models.DateTimeField(auto_now=True)
     abnomal = models.CharField(max_length=30)
 
     def __str__(self):

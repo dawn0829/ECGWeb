@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import ECGList,ECGdata
 from .forms import CreateNewList
+from django.contrib.sessions.models import Session
+
+import threading
+import os
 
 # Create your views here.
 def home(response):
@@ -55,4 +59,17 @@ def view(response):
     return render(response,"main/view.html",{})
 
 def serverTest(response):
+    # os.system("clear")
+    # print("response: ",end="")
+    # print(response)
+    # from . import wstest
+    #threading.Thread(target=wstest.echo()).start()
+    # wstest.echo()
     return render(response,"main/serverTest.html",{})
+
+
+def index(request):
+    sid = request.COOKIES['sessionid']
+    s = Session.objects.get(pk=sid)
+    s_info = 'Session ID:' + sid + '<br>Expire_date:' + str(s.expire_date) + '<br>Data:' + str(s.get_decoded())
+    return HttpResponse(s_info)

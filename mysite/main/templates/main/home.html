@@ -3,13 +3,55 @@
 {% block title %}
     Home
     
-{% endblock  %}
-{%block content%}
+    {% endblock  %}
+    {%block content%}
     <img src="/static/main/70bm.gif" width="350"/>
     <h1>Home Page</h1>
     <a href="/serverTest">detect</a>
     <p>login<a href="/login">Here</a></p>
     <p>Don't have a account? Create one<a href="/register">Here</a></p>
     <script>var mySocket = new WebSocket("ws://www.example.com/socketserver", "my-custom-protocol");</script>
-{% endblock %}
+    {% load static %}
+    <script src="{% static 'main/chart.js' %}"></script>
+    <button id="new">New</button>
+    <canvas id="myChart" style="width:100px;height:50px"></canvas>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+    
+        const newButton = document.getElementById("new")
+        
+        const data = {
+            labels: [1,2,3,4,5,6,7],
+            datasets: [
+                {
+                    label: "ECGdata",
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [330,16,85,89,150,220,3]
+                }
+            ]
+        }
+        
+        
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
 
+        const myChart = new Chart(ctx, config);
+
+        newButton.addEventListener("click", () => {
+            myChart.data.labels.push(8)
+            myChart.data.datasets[0].data.push(230)
+            myChart.update();
+        })
+    </script>
+
+{% endblock %}
